@@ -26,7 +26,6 @@ function makeBoard() {
     }
     board.push(row);
   }
-  console.log(board);
  }
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
@@ -88,25 +87,31 @@ const calculateNewTop = y => `${FIRST_TOP - DELTA_TOP * y}px`
 
 // change time based on where the piece is going. Prevents pieces from slowing as they stack
 const FIRST_TIME = 0.5;
-const DELTA_TIME = 0.05;
+const DELTA_TIME = 0.05; 
 const calculateNewTime = y => `${FIRST_TIME - DELTA_TIME * y}s`;
 
-/** endGame: announce game end */
+/** endGame: announce game end and start over */
 
 function endGame(msg) {
   setTimeout(() => {
     // say who won
     alert(msg);
-    // clear boards
-    htmlBoard.innerHTML = '';
-    board = [];
-    // reset active player
-    currPlayer = 1;
-    nextPlayer = 2;
-    // create fresh boards
-    makeBoard();
-    makeHtmlBoard();}, FIRST_TIME * 1000);
+    startOver();
+   }, FIRST_TIME * 1000);
 
+}
+
+// startOver: clear boards, reset player, and create fresh boards 
+function startOver() {
+  // clear boards
+  htmlBoard.innerHTML = '';
+  board = [];
+  // reset active player
+  currPlayer = 1;
+  nextPlayer = 2;
+  // create fresh boards
+  makeBoard();
+  makeHtmlBoard();
 }
 
 /** handleClick: handle click of column top to play piece */
