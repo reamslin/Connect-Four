@@ -52,8 +52,8 @@ function makeHtmlBoard() {
     }
     // prepend instead of append to play bottom up 
     htmlBoard.prepend(row);
-    htmlBoard.prepend(top);
   }
+  htmlBoard.prepend(top);
 }
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
